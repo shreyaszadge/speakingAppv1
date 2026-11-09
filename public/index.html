@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Talking Avatar</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- TalkingHead + Three.js are loaded from a CDN. Versions are pinned; see README to change them. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js/+esm",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/",
+      "talkinghead": "https://cdn.jsdelivr.net/gh/met4citizen/TalkingHead@1.7/modules/talkinghead.mjs"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main class="app">
+    <section class="stage" aria-label="Avatar">
+      <div id="avatar" class="avatar"></div>
+
+      <div class="stage-top">
+        <div id="status" class="status" data-state="loading" role="status" aria-live="polite">
+          <span class="dot"></span><span id="statusText">Loading avatar</span>
+        </div>
+        <div id="modeBadge" class="mode-badge" hidden>Demo mode</div>
+      </div>
+
+      <div id="avatarOverlay" class="avatar-overlay">
+        <div class="spinner" aria-hidden="true"></div>
+        <p id="avatarMsg">Loading avatar…</p>
+      </div>
+
+      <div class="controls">
+        <button id="stopBtn" class="btn-stop" type="button" disabled>Stop speaking</button>
+        <button id="micBtn" class="btn-mic" type="button" aria-pressed="false" aria-label="Start microphone">
+          <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
+            <path fill="currentColor" d="M12 15a3.5 3.5 0 0 0 3.5-3.5V6a3.5 3.5 0 1 0-7 0v5.5A3.5 3.5 0 0 0 12 15Zm6-3.5a1 1 0 1 0-2 0 4 4 0 0 1-8 0 1 1 0 1 0-2 0 6 6 0 0 0 5 5.91V20H9.5a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2H13v-2.59A6 6 0 0 0 18 11.5Z"/>
+          </svg>
+        </button>
+        <span class="mic-hint" id="micHint">Tap to talk</span>
+      </div>
+    </section>
+
+    <section class="chat" aria-label="Conversation">
+      <header class="chat-head">
+        <h1>Talk with your avatar</h1>
+        <p>Speak with the microphone or type below.</p>
+        <p id="timing" class="timing"></p>
+      </header>
+
+      <ol id="messages" class="messages" aria-live="polite"></ol>
+
+      <div id="typing" class="typing" hidden aria-label="Avatar is thinking">
+        <span></span><span></span><span></span>
+      </div>
+
+      <form id="chatForm" class="composer" autocomplete="off">
+        <input id="textInput" type="text" placeholder="Type a message…" maxlength="2000" aria-label="Message" />
+        <button id="sendBtn" type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "talking-avatar",
+  "version": "1.0.0",
+  "description": "AI talking avatar: Gemini + Google Cloud TTS + TalkingHead",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "mock": "MOCK_MODE=true node server.js",
+    "get-avatar": "node scripts/get-avatar.js",
+    "model-test": "node scripts/model-speed.js",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "@google/genai": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}
